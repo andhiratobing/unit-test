@@ -7,19 +7,11 @@
    yang telah disediakan yaitu packages **test**, pembuatan unit test ditandai dengan adanya anotasi **@Test**
    
 
-## Melihat report/laporan **Unit Test** melalui browser
-- Open package **build**
-   1. Klik **report**
-   2. Klik tests 
-   3. Klik test
-   4. Klik kanan index.html
-   5. Open In Browser
-   6. Selesai
-
 ## Cara mengubah nama Test manual
   - Menambahkan anotasi **@DisplayName("Description")** di atas function Test
+  
 ## Mengubah nama Test otomatis
-  - Langkah 
+  - Langkah: 
   1. Membuat class generator
      Contoh:
      ```
@@ -38,7 +30,6 @@
         }
       }
      ```
-    
   2. Menambahkan anotasi **@DisplayNameGeneration("Description")** di atas function Test
 
 ## Cara menonaktifkan Unit Test pada function yang dibuat
@@ -50,11 +41,44 @@
         // Belum selesai membuat unit tes
     }
     ```
+    
+## Menandai Unit Test sebelum & setelah setiap function dieksekusi
+- Jika sebelum dijalankan maka:
+  Tambahkan anotasi **@BeforeEach**
+- Jika setelah dijalankan maka:
+  Tambahkan anotasi **@AfterEach**
+
+## Menandai Unit Test sebelum & setelah semua function dieksekusi (_Static Function/Object Function)
+   Pembuatan Unit Test ini ada syaratnya yaitu:
+   Langkah:
+   1. Membuat object function
+      ```
+      ```
+   - Jika sebelum dijalankan maka:
+     Tambahkan anotasi **@BeforeAll**
+   - Jika setelah dijalankan maka:
+     Tambahkan anotasi **@AfterAll**  
+
+## Melihat report/laporan **Unit Test** melalui browser
+- Open package **build**
+   1. Klik **report**
+   2. Klik tests 
+   3. Klik test
+   4. Klik kanan index.html
+   5. Open In Browser
+   6. Selesai
 
 
 ## Kata kunci
-  - **assertEquals** digunakan untuk masukan ekspetasi dan aktual fungsi/method yang akan di tes (Assert that expected and actual are equal)
-  - **assertThrows** digunakan untuk mengecek Throws
+  - **assertEquals**digunakan untuk masukan ekspetasi dan aktual fungsi/method yang akan di tes (Assert that expected and actual are equal)
+  - **assertThrows**digunakan untuk mengecek Throws(Misalkan _IllegalArgumentException_)
+  - **@Disable**digunakan untuk menonaktifkan unit test (misalkan dalam keadaan sedang diperbaiki ketika ada bug) 
+  - **@BeforeEach**digunakan untuk menandai setiap function yang akan dieksekusi sebelum unit test dijalankan
+  - **@AfterEach**digunakan untuk menandai setiap function yang akan dieksekusi setelah unit test dijalankan
+  - **@BeforeAll**digunakan untuk menandai semua function yang akan dieksekusi sebelum unit test dijalankan, namun hanya static function(object function di           Kotlin) yang bisa menggunakan 
+  - **@AfterAll**digunakan untuk menandai semua function yang akan dieksekusi setelah unit test dijalankan, namun hanya static function(object function di Kotlin)     yang bisa menggunakan
+  - **JvmStatic** digunakan untuk memberitahu compiler _Kotlin_ supaya digenerate ke-static-nya _Java  
+  
 
    
   
