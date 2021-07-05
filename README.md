@@ -169,12 +169,12 @@
      - Jika test boleh berjalan pada OS yang ditentukan, maka:
        - Tambahkan anotasi
          ```
-         @EnabledOnOs
+         @EnabledOnOs(value = [OS.typeOS])
          ```
      - Jika test tidak boleh berjalan pada OS yang ditentukan, maka:
        - Tambahkan anotasi
          ```
-         @DisabledOnOs
+         @DisabledOnOs(value = [OS.typeOS])
          ```
    
    - Conditional JRE (versi java yang digunakan)
@@ -183,23 +183,23 @@
       - Jika test boleh berjalan pada JRE yang ditentukan, maka:
         - Tambahkan anotasi
           ```
-          @EnabledOnJre
+          @EnabledOnJre(value = [JRE.java_verison])
           ```
       - Jika test tidak boleh berjalan pada JRE yang ditentukan, maka:
         - Tambahkan anotasi
           ```
-          @EnabledOnJre
+          @EnabledOnJre(value = [JRE.java_verison])
           ```
      2. **Secara otomatis**(menggunakan range)
       - Jika test boleh berjalan pada JRE yang ditentukan, maka:
         - Tambahkan anotasi
           ```
-          @EnabledOnJreRange
+          @EnabledOnJreRange(min = JRE.java_verison, max = JRE.java_verison)
           ```
       - Jika test tidak boleh berjalan pada JRE yang ditentukan, maka:
         - Tambahkan anotasi
           ```
-          @DisabledOnJreRange
+          @DisabledOnJreRange(min = JRE.java_verison, max = JRE.java_verison)
           ```
    
    - Conditional System Property
@@ -208,23 +208,33 @@
       - Jika test boleh berjalan hanya satu kondisi system property yang ditentukan, maka:
         - Tambahkan anotasi
           ```
-          @EnabledIfSystemProperty
+          @EnabledIfSystemProperty(named = "value", matches = "value")
           ```
       - Jika test boleh tidak boleh berjalan hanya satu kondisisystem proerty yang ditentukan, maka:
         - Tambahkan anotasi
           ```
-          @DisabledIfSystemProperty
+          @DisabledIfSystemProperty(named = "value", matches = "value")
           ```
      2. Jika berjalan lebih dari satu kondisi
       - Jika test boleh berjalan lebih dari satu kondisi system property lebih dari satu kondisi, maka:
         - Tambahkan anotasi
           ```
-          @EnabledIfSystemProperties
+          @EnabledIfSystemProperties(value[
+             @EnabledIfSystemProperty(named = "value", matches = "value",
+             @EnabledIfSystemProperty(named = "value", matches = "value",
+             @EnabledIfSystemProperty(named = "value", matches = "value"
+             ...
+          ])
            ```
       - Jika tes tidak boleh berjalan lebih dari satu kondisi system property lebih dari satu kondisi, maka:
         - Tambahkan anotasi
           ```
-          @DisabledIfSystemProperties
+          @DisabledIfSystemProperties(value[
+             @DisabledIfSystemProperty(named = "value", matches = "value",
+             @DisabledIfSystemProperty(named = "value", matches = "value",
+             @DisabledIfSystemProperty(named = "value", matches = "value"
+             ...
+          ])
           ```
    - Conditioanal Environment Variable
      Langkah:
@@ -232,27 +242,72 @@
       - Jika test boleh berjalan hanya satu kondisi environment variable yang ditentukan, maka:
         - Tambahkan anotasi
           ```
-          @EnabledIfEnvironmentVariable
+          @EnabledIfEnvironmentVariable(named = "value", matches = "value")
           ```
       - Jika test boleh tidak boleh berjalan hanya satu kondisi environment variable yang ditentukan, maka:
         - Tambahkan anotasi
           ```
-          @DisabledIfEnvironmentVariable
+          @DisabledIfEnvironmentVariable(named = "value", matches = "value")
           ```
      2. Jika berjalan lebih dari satu kondisi
       - Jika test boleh berjalan lebih dari satu kondisi environment variable  lebih dari satu kondisi, maka:
         - Tambahkan anotasi
           ```
-          @EnabledIfEnvironmentVariables(
+          @EnabledIfEnvironmentVariables(value =
+            [
+               EnabledIfEnvironmentVariable(named = "value",matches = "value"),
+               EnabledIfEnvironmentVariable(named = "value",matches = "value")
+            ])
           ```
       - Jika tes tidak boleh berjalan lebih dari satu kondisi environment variable lebih dari satu kondisi, maka:
         - Tambahkan anotasi
           ```
-          @DisabledIfEnvironmentVariables
+          @DisabledIfEnvironmentVariables(
+            [
+               DisabledIfEnvironmentVariable(named = "value",matches = "value"),
+               DisabledIfEnvironmentVariable(named = "value",matches = "value")
+            ])
           ```
-        
-  
 
+## Membuat penanda Tag
+   Tag adalah penanda, yang menandai sebuah class atau function supaya lebih fleksibel dalam menjalankan unit test
+   Cara penggunaan tag
+   ```
+   @Tag("name_tag")
+   ```
+   
+   **Ketentuan:**
+     - Jika menambahkan tag di class unit test, maka secara otomatis semua function unit test di dalam class tersebut akan memiliki tag tersebut.
+     - Jika ingin menambahkan beberapa tag di satu class atau function unit test, dapat menggunakan anotasi berikut:
+       ```
+       @Tags("name_tag")
+       ```
+ 
+   Keuntungan menggunakan tag dapat memisahkan jenis unit test
+   Contoh:
+   ```
+   @Tag(integration-test)
+   class SimpleClass(){
+      //Code
+   }
+   ```
+   Kode diatas menandakan bahwa test tersebut adalah khusus integration-tes, bukan test biasa.
+   Cara membedakannya yaitu mengubah setting gradle menjadi berikut:
+   ```
+    tasks.named<Test>("test"){
+       useJUnitPlatform{
+           excludeTags("integration-test")
+       }
+    }
+   ```
+   
+   ```
+   tasks.register("integration-test", Test::class){
+       useJUnitPlatform{
+           includeTags("integration-test")
+       }
+    }
+   ```
    
 ## Melihat report/laporan **Unit Test** melalui browser
    Langkah:
@@ -289,7 +344,9 @@
   - **@@EnabledIfEnvironmentVariable** digunakan untuk penanda bahwa unit test **_boleh_** berjalan pada satu kondisi **EnvironmentVariable** yang                     ditentukan
   - **@DisabledIfEnvironmentVariable** digunakan untuk penanda bahwa unit test **_tidak boleh_** berjalan pada satu kondisi **EnvironmentVariable**         yang       ditentukan
   - **@@EnabledIfEnvironmentVariables** digunakan untuk penanda bahwa unit test **_boleh_** berjalan pada lebih dari satu kondisi **EnvironmentVariable** yang         ditentukan
-  - **@DisabledIfEnvironmentVariables** digunakan untuk penanda bahwa unit test **_tidak boleh_** berjalan pada lebih dari satu kondisi **EnvironmentVariable**       yang ditentukan 
+  - **@DisabledIfEnvironmentVariables** digunakan untuk penanda bahwa unit test **_tidak boleh_** berjalan pada lebih dari satu kondisi **EnvironmentVariable**       yang ditentukan
+  - **@Tag** digunakan untuk menandai sebuah class atau function supaya lebih fleksibel berdasarkan jenis testnya
+  - **@Tag** digunakan untuk menandai beberapa class atau function supaya lebih fleksibel berdasarkan jenis testnya  
 
    
   
