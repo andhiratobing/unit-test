@@ -41,7 +41,15 @@ dependencies {
 
     //Configuration JUnit 5
 tasks.named<Test>("test"){
-    useJUnitPlatform()
+    useJUnitPlatform{
+        excludeTags("integration-test")
+    }
+}
+
+tasks.register("integration-test", Test::class){
+    useJUnitPlatform{
+        includeTags("integration-test")
+    }
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).all {

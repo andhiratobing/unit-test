@@ -51,7 +51,7 @@ class ConditionalTest {
         //Code
     }
 
-    /*Check system your computer*/
+    /*Check your computer system*/
     @Test
     fun printSystemProperties(){
         System.getProperties().forEach { key, value ->
@@ -115,7 +115,7 @@ class ConditionalTest {
         //Code
     }
 
-    /*Test enabled environment variable with one value*/
+    /*Test enabled environment variable with many value*/
     @Test
     @EnabledIfEnvironmentVariables(value =
     [
@@ -126,7 +126,7 @@ class ConditionalTest {
         //Code
     }
 
-    /*Test disabled environment variable with one value*/
+    /*Test disabled environment variable with many value*/
     @Test
     @DisabledIfEnvironmentVariables(value =
     [

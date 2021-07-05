@@ -3,7 +3,7 @@ package unit.test
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 
-class ObjectFunction {
+class BeforeAfterAll {
 
     /*Membuat function static atau object function*/
     companion object{
