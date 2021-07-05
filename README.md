@@ -308,7 +308,91 @@
        }
     }
    ```
+   Hasil running test:
+   ![Screenshot from 2021-07-05 23-17-01](https://user-images.githubusercontent.com/43465830/124498879-4a613300-dde7-11eb-9da2-fbc4ff6d8eb7.png)
    
+## Mengurutkan eksekusi test
+   Secara default unit test dijalankan secara random/tidak sesuai urutan pembuatan function test, karena sebuah function test sifatnya independen(berdiri sendiri    tidak bergantung dengan function lain).
+   Untuk mengurutkannya dapat menambahkan anotasi berikut:
+   ```
+   @TestMethodOrder(value = MethodOrderer.OrderAnnotation::class)
+   class SimpleClass(){
+   
+   }
+   ```
+   ```
+   @Order(number)
+   function(){
+   
+   }
+   ```
+   Contoh program:
+   ```
+   @TestMethodOrder(value = MethodOrderer.OrderAnnotation::class)
+   class simpleClass(){
+      
+    @Test
+    @Order(2)
+    fun sampleSecond(){
+
+    }
+    
+    @Test
+    @Order(2)
+    fun sampleThrid{
+
+    }
+    
+    @Test
+    @Order(1)
+    fun sampleFirst(){
+
+    }
+   }
+   ```
+
+## Lifecycle/siklus hidup Unit Test
+   Lifecycle unit test secara default indeendent(berdiri sendiri atau tidak bergantung pada function lain). Lifecycle secara defaultnya yaitu
+   ```
+   TestInstance.Lifecycle.PER_METHOD
+   ```
+   Namun, jika ingin mengubah function menjadi 1 object(_instance_) yang sama maka dapat menggunakan anotasi
+   ```
+   TestInstance.Lifecycle.PER_CLASS
+   ```
+   
+   Contoh program Lifecycle.PER_METHOD:
+   ```
+   @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+   //@TestInstance(value = TestInstance.Lifecycle.PER_METHOD)
+   class LifecycleUnitTest(){
+    var count = 0
+    
+    @Test
+    fun sampleFirst(){
+        //check instance number
+        count++
+        println(count)
+        println(this.hashCode())
+    }
+    
+    @Test
+    fun sampleSecond(){
+        //check instance number
+        count++
+        println(count)
+        println(this.hashCode())
+    }
+   }
+   ```
+   Hasil running Lifecycle.PER_CLASS:
+   ![Screenshot from 2021-07-05 23-55-02](https://user-images.githubusercontent.com/43465830/124502510-d413ff00-dded-11eb-8738-1d215d479418.png)
+
+   Hasil running Lifecycle.PER_METHOD:
+   ![Screenshot from 2021-07-05 23-55-25](https://user-images.githubusercontent.com/43465830/124502528-da09e000-dded-11eb-9f26-cac50d442117.png)
+
+
+
 ## Melihat report/laporan **Unit Test** melalui browser
    Langkah:
    1. Open package **build**
@@ -347,6 +431,8 @@
   - **@DisabledIfEnvironmentVariables** digunakan untuk penanda bahwa unit test **_tidak boleh_** berjalan pada lebih dari satu kondisi **EnvironmentVariable**       yang ditentukan
   - **@Tag** digunakan untuk menandai sebuah class atau function supaya lebih fleksibel berdasarkan jenis testnya
   - **@Tag** digunakan untuk menandai beberapa class atau function supaya lebih fleksibel berdasarkan jenis testnya  
+  - **@TestMethodOrder** digunakan untuk mengurutkan sebuah test mana yang akan dijalankan dulu, karena defaultnya unit test dijalankan secara random
+  - 
 
    
   
