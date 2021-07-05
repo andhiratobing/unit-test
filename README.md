@@ -25,6 +25,9 @@
      ```
      Kemudian reload/sync gradle
 
+## Penamaan class atau function unit test
+   Dalam membuat unit tes sebaiknya class unit test dibuat sama seperti nama class yang akan di test, tujuannya supaya tidak kebingungan mencari unit test jika      program/fitur aplikasi yang dibuat sudah banyak
+   
 ## Membuat Unit Test pada Kotlin
    Pembuatan unit test dibuat tidak seperti dengan membuat program biasa/ dibuat pada packages **main**, akan tetapi pembuatan unit tes dibuat pada packages
    yang telah disediakan yaitu packages **test**, pembuatan unit test ditandai dengan adanya anotasi
@@ -33,7 +36,7 @@
    ```
    
 ## Mengubah nama Unit Test manual
-  - Menambahkan anotasi di atas function Test
+  - Menambahkan anotasi di atas function test
     ```
     @DisplayName("Description")
     ```
@@ -75,16 +78,16 @@
     
 ## Menandai Unit Test sebelum & setelah setiap function dieksekusi
 - Jika sebelum dijalankan maka:
-  Tambahkan anotasi
-  ```
-  @BeforeEach
-  ```
+  - Tambahkan anotasi
+    ```
+    @BeforeEach
+    ```
 - Jika setelah dijalankan maka:
-  Tambahkan anotasi
-  ```
-  @AfterEach
-  ```
-
+  - Tambahkan anotasi
+    ```
+    @AfterEach
+    ```
+    
 ## Menandai Unit Test sebelum & setelah semua function dieksekusi (_Static Function/Object Function_)
    Pembuatan Unit Test ini ada syaratnya yaitu:
    Langkah:
@@ -102,18 +105,18 @@
         fun afterAll(){
             println("Setelah semua dieksekusi")
         }
-    }
+      }
       ```
    - Jika sebelum dijalankan maka:
-     Tambahkan anotasi
-     ```
-     @BeforeAll
-     ```
+     - Tambahkan anotasi
+       ```
+       @BeforeAll
+       ```
    - Jika setelah dijalankan maka:
-     Tambahkan anotasi
-     ```
-     @AfterAll
-     ```
+     - Tambahkan anotasi
+       ```
+       @AfterAll
+       ```
 
 ## Membatalkan Unit Test manual
    Cara membatalkan manual dapat dilakukan dengan menggunakan exception **TestAbortedException()**
@@ -132,20 +135,17 @@
    ```
    getenv() adalah environment, cara melihat,mengubah,menghapus environment yaitu
    - Klik tombol panah bawah
-   - ![Screenshot from 2021-07-05 01-08-53](https://user-images.githubusercontent.com/43465830/124395349-dca50080-dd2d-11eb-84c4-a61dbfda597e.png)
+     ![Screenshot from 2021-07-05 01-08-53](https://user-images.githubusercontent.com/43465830/124395349-dca50080-dd2d-11eb-84c4-a61dbfda597e.png)
    - Klik edit configurations
-   - ![Screenshot from 2021-07-05 01-09-12](https://user-images.githubusercontent.com/43465830/124395611-4376e980-dd2f-11eb-9c29-f004a1bb046e.png)
+     ![Screenshot from 2021-07-05 01-09-12](https://user-images.githubusercontent.com/43465830/124395611-4376e980-dd2f-11eb-9c29-f004a1bb046e.png)
    - Tuliskan environment variables
-      - Contoh value environment varibales
-        ```
-        PROFILE=DEV
-        ```
+     - Contoh value environment varibales
+       ```
+       PROFILE=DEV
+       ```
    - ![Screenshot from 2021-07-05 01-09-27](https://user-images.githubusercontent.com/43465830/124395622-4a9df780-dd2f-11eb-98c1-a20f44bbed49.png)
      
 
-
-
-   
 ## Membatalkan Unit Test otomatis
    Cara membatalkan otomatis dapat dilakukan dengan menggunakan **Assumptions** (_cara kerjanya mirip Assertion_)
    Langkah:
@@ -167,89 +167,89 @@
    - Conditional OS
      Langkah:
      - Jika test boleh berjalan pada OS yang ditentukan, maka:
-       Tambahkan anotasi
-       ```
-       @EnabledOnOs
-       ```
+       - Tambahkan anotasi
+         ```
+         @EnabledOnOs
+         ```
      - Jika test tidak boleh berjalan pada OS yang ditentukan, maka:
-       Tambahkan anotasi
-       ```
-       @DisabledOnOs
-       ```
+       - Tambahkan anotasi
+         ```
+         @DisabledOnOs
+         ```
    
-   - Comditional JRE (versi java yang digunakan)
+   - Conditional JRE (versi java yang digunakan)
      Langkah:
      1. **Secara manual**
       - Jika test boleh berjalan pada JRE yang ditentukan, maka:
-        Tambahkan anotasi
-        ```
-        @EnabledOnJre
-        ```
+        - Tambahkan anotasi
+          ```
+          @EnabledOnJre
+          ```
       - Jika test tidak boleh berjalan pada JRE yang ditentukan, maka:
-        Tambahkan anotasi
-        ```
-        @EnabledOnJre
-        ```
+        - Tambahkan anotasi
+          ```
+          @EnabledOnJre
+          ```
      2. **Secara otomatis**(menggunakan range)
       - Jika test boleh berjalan pada JRE yang ditentukan, maka:
-        Tambahkan anotasi
-        ```
-        @EnabledOnJreRange
-        ```
+        - Tambahkan anotasi
+          ```
+          @EnabledOnJreRange
+          ```
       - Jika test tidak boleh berjalan pada JRE yang ditentukan, maka:
-        Tambahkan anotasi
-        ```
-        @DisabledOnJreRange
-        ```
+        - Tambahkan anotasi
+          ```
+          @DisabledOnJreRange
+          ```
    
    - Conditional System Property
      Langkah:
      1. Jika berjalan hanya satu kondisi 
       - Jika test boleh berjalan hanya satu kondisi system property yang ditentukan, maka:
-        Tambahkan anotasi
-        ```
-        @EnabledIfSystemProperty
-        ```
+        - Tambahkan anotasi
+          ```
+          @EnabledIfSystemProperty
+          ```
       - Jika test boleh tidak boleh berjalan hanya satu kondisisystem proerty yang ditentukan, maka:
-        Tambahkan anotasi
-        ```
-        @DisabledIfSystemProperty
-        ```
+        - Tambahkan anotasi
+          ```
+          @DisabledIfSystemProperty
+          ```
      2. Jika berjalan lebih dari satu kondisi
       - Jika test boleh berjalan lebih dari satu kondisi system property lebih dari satu kondisi, maka:
-        Tambahkan anotasi
-        ```
-        @EnabledIfSystemProperties
-        ```
+        - Tambahkan anotasi
+          ```
+          @EnabledIfSystemProperties
+           ```
       - Jika tes tidak boleh berjalan lebih dari satu kondisi system property lebih dari satu kondisi, maka:
-        Tambahkan anotasi
-        ```
-        @DisabledIfSystemProperties
-        ```
+        - Tambahkan anotasi
+          ```
+          @DisabledIfSystemProperties
+          ```
    - Conditioanal Environment Variable
      Langkah:
      1. Jika berjalan hanya satu kondisi 
       - Jika test boleh berjalan hanya satu kondisi environment variable yang ditentukan, maka:
-        Tambahkan anotasi
-        ```
-        @EnabledIfEnvironmentVariable
-        ```
+        - Tambahkan anotasi
+          ```
+          @EnabledIfEnvironmentVariable
+          ```
       - Jika test boleh tidak boleh berjalan hanya satu kondisi environment variable yang ditentukan, maka:
-        Tambahkan anotasi
-        ```
-        @DisabledIfEnvironmentVariable
-        ```
+        - Tambahkan anotasi
+          ```
+          @DisabledIfEnvironmentVariable
+          ```
      2. Jika berjalan lebih dari satu kondisi
       - Jika test boleh berjalan lebih dari satu kondisi environment variable  lebih dari satu kondisi, maka:
-        Tambahkan anotasi
-        ```
-        @EnabledIfEnvironmentVariables(
-        ```
+        - Tambahkan anotasi
+          ```
+          @EnabledIfEnvironmentVariables(
+          ```
       - Jika tes tidak boleh berjalan lebih dari satu kondisi environment variable lebih dari satu kondisi, maka:
-        Tambahkan anotasi
-        ```
-        @DisabledIfEnvironmentVariables
-        ```   ```
+        - Tambahkan anotasi
+          ```
+          @DisabledIfEnvironmentVariables
+          ```
         
   
 
@@ -286,6 +286,10 @@
   - **@DisabledIfSystemProperty** digunakan untuk penanda bahwa unit test **_tidak boleh_** berjalan pada satu kondisi **SystemProperty** yang ditentukan
   - **@EnabledIfSystemProperties** digunakan untuk penanda bahwa unit test **_boleh_** berjalan pada lebih dari satu kondisi **SystemProperty** yang ditentukan
   - **@DisabledIfSystemProperties** digunakan untuk penanda bahwa unit test **_tidak boleh_** berjalan pada lebih dari satu kondisi **SystemProperty** yang           ditentukan
+  - **@@EnabledIfEnvironmentVariable** digunakan untuk penanda bahwa unit test **_boleh_** berjalan pada satu kondisi **EnvironmentVariable** yang                     ditentukan
+  - **@DisabledIfEnvironmentVariable** digunakan untuk penanda bahwa unit test **_tidak boleh_** berjalan pada satu kondisi **EnvironmentVariable**         yang       ditentukan
+  - **@@EnabledIfEnvironmentVariables** digunakan untuk penanda bahwa unit test **_boleh_** berjalan pada lebih dari satu kondisi **EnvironmentVariable** yang         ditentukan
+  - **@DisabledIfEnvironmentVariables** digunakan untuk penanda bahwa unit test **_tidak boleh_** berjalan pada lebih dari satu kondisi **EnvironmentVariable**       yang ditentukan 
 
    
   
