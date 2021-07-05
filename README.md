@@ -135,14 +135,19 @@
    ```
    getenv() adalah environment, cara melihat,mengubah,menghapus environment yaitu
    - Klik tombol panah bawah
+   
      ![Screenshot from 2021-07-05 01-08-53](https://user-images.githubusercontent.com/43465830/124395349-dca50080-dd2d-11eb-84c4-a61dbfda597e.png)
+     
    - Klik edit configurations
+  
      ![Screenshot from 2021-07-05 01-09-12](https://user-images.githubusercontent.com/43465830/124395611-4376e980-dd2f-11eb-9c29-f004a1bb046e.png)
+     
    - Tuliskan environment variables
      - Contoh value environment varibales
        ```
        PROFILE=DEV
        ```
+       
    - ![Screenshot from 2021-07-05 01-09-27](https://user-images.githubusercontent.com/43465830/124395622-4a9df780-dd2f-11eb-98c1-a20f44bbed49.png)
      
 
@@ -161,6 +166,7 @@
            println("Test not aborted")
        }
       ```
+      
 ## Test berdasarkan kondisi
    Melakukan tes berdasarkan kondisi dapat dilakukan dengan **Assumptions**, contohnya mengetest JRE, OS, Environment Varaibles dan lain-lain.
    Namun ada cara yang lebih mudah yaitu dengan mengunakan:
@@ -309,7 +315,9 @@
     }
    ```
    Hasil running test:
+   
    ![Screenshot from 2021-07-05 23-17-01](https://user-images.githubusercontent.com/43465830/124498879-4a613300-dde7-11eb-9da2-fbc4ff6d8eb7.png)
+   
    
 ## Mengurutkan eksekusi test
    Secara default unit test dijalankan secara random/tidak sesuai urutan pembuatan function test, karena sebuah function test sifatnya independen(berdiri sendiri    tidak bergantung dengan function lain).
@@ -386,10 +394,14 @@
    }
    ```
    Hasil running Lifecycle.PER_CLASS:
+   
    ![Screenshot from 2021-07-05 23-55-02](https://user-images.githubusercontent.com/43465830/124502510-d413ff00-dded-11eb-8738-1d215d479418.png)
+   
 
    Hasil running Lifecycle.PER_METHOD:
+   
    ![Screenshot from 2021-07-05 23-55-25](https://user-images.githubusercontent.com/43465830/124502528-da09e000-dded-11eb-9f26-cac50d442117.png)
+   
 
 
 
